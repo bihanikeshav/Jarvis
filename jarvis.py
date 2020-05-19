@@ -1,4 +1,4 @@
-from tkinter import *
+import tkinter as tk
 import cv2
 import PIL.Image, PIL.ImageTk
 import pyttsx3
@@ -23,13 +23,13 @@ engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
-window = Tk()
+window = tk.Tk()
 
 global var
 global var1
 
-var = StringVar()
-var1 = StringVar()
+var = tk.StringVar()
+var1 = tk.StringVar()
 
 def speak(audio):
     engine.say(audio)
@@ -275,30 +275,6 @@ def play():
                     else:
                         digit = 0
                     sum += digit
-        '''
-        elif 'enter student details' in query:
-            s = Student()
-            var.set('Name of the student')
-            window.update()
-            speak('Name of the student')
-            name = takeCommand()
-            var.set('standard in which he/she study')
-            window.update()
-            speak('standard in which he/she study')
-            standard = takeCommand()
-            var.set('Role Number')
-            window.update()
-            speak('Role number')
-            rollno = takeCommand()
-            s.Enterdetalis(name,standard,rollno)
-            var.set('Details are saved')
-            window.update()
-            speak('Details are saved')
-
-        elif 'show me details' in query:
-            var.set('Name: '+name+' Standard: '+ standard+' Roll No.: '+ rollno)
-            window.update()'''
-
         elif 'click photo' in query:
             stream = cv2.VideoCapture(0)
             grabbed, frame = stream.read()
@@ -342,30 +318,30 @@ def update(ind):
     label.configure(image=frame)
     window.after(100, update, ind)
 
-label2 = Label(window, textvariable = var1, bg = '#FAB60C')
+label2 = tk.Label(window, textvariable = var1, bg = '#FAB60C')
 label2.config(font=("Courier", 20))
 var1.set('User Said:')
 label2.pack()
 
-label1 = Label(window, textvariable = var, bg = '#ADD8E6')
+label1 = tk.Label(window, textvariable = var, bg = '#ADD8E6')
 label1.config(font=("Courier", 20))
 var.set('Welcome')
 label1.pack()
 
-frames = [PhotoImage(file='Assistant.gif',format = 'gif -index %i' %(i)) for i in range(100)]
+frames = [tk.PhotoImage(file='Assistant.gif',format = 'gif -index %i' %(i)) for i in range(100)]
 window.title('JARVIS')
 
-label = Label(window, width = 500, height = 500)
+label = tk.Label(window, width = 500, height = 500)
 label.pack()
 window.after(0, update, 0)
 
-btn0 = Button(text = 'WISH ME',width = 20, command = wishme, bg = '#5C85FB')
+btn0 = tk.Button(text = 'WISH ME',width = 20, command = wishme, bg = '#5C85FB')
 btn0.config(font=("Courier", 12))
 btn0.pack()
-btn1 = Button(text = 'PLAY',width = 20,command = play, bg = '#5C85FB')
+btn1 = tk.Button(text = 'PLAY',width = 20,command = play, bg = '#5C85FB')
 btn1.config(font=("Courier", 12))
 btn1.pack()
-btn2 = Button(text = 'EXIT',width = 20, command = window.destroy, bg = '#5C85FB')
+btn2 = tk.Button(text = 'EXIT',width = 20, command = window.destroy, bg = '#5C85FB')
 btn2.config(font=("Courier", 12))
 btn2.pack()
 
